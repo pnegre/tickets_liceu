@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	>
+
+	<TextView
+		android:id="@+id/tickettext"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:text=""
+		android:textSize = "17sp"
+		/>
+
+	<View 
+		android:background="#FFFFFF" 
+		android:layout_centerVertical ="true"
+		android:layout_width = "fill_parent"
+		android:layout_height="1dip"
+		android:layout_marginBottom="5dip"
+		android:layout_marginTop="5dip"
+		android:layout_alignParentTop="true"/>
+	 
+	<TextView
+		android:id="@+id/reporter"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:text=""
+		/>
+
+	<View 
+		android:background="#FFFFFF" 
+		android:layout_centerVertical ="true"
+		android:layout_width = "fill_parent"
+		android:layout_height="1dip"
+		android:layout_marginBottom="5dip"
+		android:layout_marginTop="5dip"
+		android:layout_alignParentTop="true"/>
+		
+		
+	<TextView
+		android:id="@+id/place"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:text=""
+		/>
+
+	<View 
+		android:background="#FFFFFF" 
+		android:layout_centerVertical ="true"
+		android:layout_width = "fill_parent"
+		android:layout_height="1dip"
+		android:layout_marginBottom="5dip"
+		android:layout_marginTop="5dip"
+		android:layout_alignParentTop="true"/>
+
+
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+
+		<Button
+			android:id="@+id/btclose"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/tick_close_button"
+			/>
+
+		<Button
+			android:id="@+id/btsend"
+			android:layout_toRightOf="@+id/btclose"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/tick_sendcomm_button"
+			/>
+
+	</LinearLayout>
+
+
+
+	<EditText android:id="@+id/tcomment"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:inputType="textCapSentences"
+		/>
+
+	<CheckBox android:id="@+id/checkemail"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/tick_sendemail_check" />
+
+
+	<TextView
+		android:id="@+id/ticketcomments"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:text=""
+		/>
+	
+
+</LinearLayout>
+

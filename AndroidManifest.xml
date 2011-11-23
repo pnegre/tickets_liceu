@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.liceu.tickets"
+	android:versionCode="1"
+	android:versionName="1.0">
+
+	<uses-sdk android:minSdkVersion="4" />
+
+	<application 
+		android:label="@string/app_name"
+		android:icon="@drawable/bomb"
+		android:name="TicketsApp">
+	
+		<activity android:name="TicketsActivity"
+				android:screenOrientation="portrait"
+				android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity 
+			android:name="TicketsPreferences"
+			android:screenOrientation="portrait">
+		</activity>
+		<activity 
+			android:name="ViewTicketActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustPan">
+		</activity>
+		
+		<service android:name=".LiceuService"/>
+
+	
+	</application>
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+	
+</manifest> 

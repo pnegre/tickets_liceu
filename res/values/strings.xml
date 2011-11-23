@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Tickets Liceu</string>
+	<string name="errserver">Error de connexió amb el servidor</string>
+	<string name="wait">Treballant...</string>
+	
+	<string name="prefs_title">Preferències</string>
+	
+	<string name="username">Nom d\'usuari</string>
+	<string name="username_summary">Usuari del domini esliceu.com</string>
+	<string name="username_title">Escriu el teu nom d\'usuari</string>
+	
+	<string name="password">Contrasenya</string>
+	<string name="password_summary">Contrasenya</string>
+	<string name="password_title">Escriu la contrassenya</string>
+	
+	<string name="menu_prefs">Preferències</string>
+	<string name="menu_refresh">Refresca</string>
+	
+	<string name="tick_sendcomm_button">Envia comentari</string>
+	<string name="tick_close_button">Tanca</string>
+	
+	<string name="tick_sendemail_check">També envia correu</string>
+</resources>
