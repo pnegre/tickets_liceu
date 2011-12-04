@@ -71,11 +71,11 @@ public class ViewTicketActivity extends Activity
 		reporter.setText(ticket.user);
 		place.setText(ticket.place);
 		
-		write_comments();
+		writeComments();
 	}
 	
 	
-	void write_comments()
+	void writeComments()
 	{
 		List comments = tapp.database.getComments(ticket.id);
 		commentslist.setAdapter(new ArrayAdapter<List>(this, R.layout.list_item, comments));
@@ -98,7 +98,7 @@ public class ViewTicketActivity extends Activity
 				vars.put("action","close");
 				String url = new String("https://apps.esliceu.com/tickets/ticket/"
 					+ String.valueOf(ticket.id));
-				tapp.server.do_post(url, vars);
+				tapp.server.doPost(url, vars);
 				tapp.database.removeTicket(ticket.id);
 			}
 			catch (ServerError e) { }
@@ -136,7 +136,7 @@ public class ViewTicketActivity extends Activity
 					vars.put("email","ON");
 				
 				String url = new String("https://apps.esliceu.com/tickets/ticket/" + String.valueOf(ticket.id));
-				tapp.server.do_post(url, vars);
+				tapp.server.doPost(url, vars);
 				tapp.database.addComment(new Comment(text,"aa"), ticket.id);
 			}
 			catch (ServerError e) { }
@@ -145,7 +145,7 @@ public class ViewTicketActivity extends Activity
 		}
 		
 		protected void onPostExecute(Void param) {
-			write_comments();
+			writeComments();
 			tcomment.setText("");
 			checkemail.setChecked(false);
 			pb.dismiss();

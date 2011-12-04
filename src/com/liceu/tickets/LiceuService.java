@@ -63,7 +63,7 @@ public class LiceuService extends IntentService
 		Log.v(TAG, "Intent finished");
 		
 		tapp.alarmset = false;
-		tapp.set_alarm();
+		tapp.setAlarm();
 		
 		wl.release();
 	}

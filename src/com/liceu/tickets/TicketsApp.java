@@ -29,22 +29,22 @@ public class TicketsApp extends Application
 	{
 		Log.v(TAG, "OnCreate (application)");
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-		init_server(sp);
+		initServer(sp);
 		
 		listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
 			@Override
 			public synchronized void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-				init_server(prefs);
+				initServer(prefs);
 			}
 		};
 		// Fer-ho així per evitar que el garbage collector elimini el listener
 		sp.registerOnSharedPreferenceChangeListener(listener);
 		
 		database = new DatabaseImp(this);
-		//set_alarm();
+		//setAlarm();
 	}
 	
-	void init_server(SharedPreferences sp)
+	void initServer(SharedPreferences sp)
 	{
 		Log.v(TAG, "Initializing server...");
 		String username = sp.getString("username","0");
@@ -56,7 +56,7 @@ public class TicketsApp extends Application
 	
 	
 	
-	synchronized void set_alarm()
+	synchronized void setAlarm()
 	{
 		if (alarmset == true) return;
 		

@@ -37,8 +37,8 @@ class ServerError extends Exception { };
 interface LiceuServer
 {
 	public void init(String u, String p);
-	public String read_json(String url) throws ServerError;
-	public void do_post(String url, Map<String,String> vars) throws ServerError;
+	public String readJson(String url) throws ServerError;
+	public void doPost(String url, Map<String,String> vars) throws ServerError;
 }
 
 
@@ -59,13 +59,13 @@ class LiceuServerImp implements LiceuServer
 	}
 	
 	// Fa un get i retorna un json en format raw
-	public String read_json(String url) throws ServerError
+	public String readJson(String url) throws ServerError
 	{
 		try 
 		{
 			HttpGet httpGet = new HttpGet(url);
-			HttpResponse response = execute_request(httpGet);
-			return get_string(response.getEntity());
+			HttpResponse response = executeRequest(httpGet);
+			return getString(response.getEntity());
 		
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -75,7 +75,7 @@ class LiceuServerImp implements LiceuServer
 	}
 	
 	// Fa un post. Amolla una excepció si hi ha problemes
-	public void do_post(String url, Map<String,String> vars) throws ServerError
+	public void doPost(String url, Map<String,String> vars) throws ServerError
 	{
 		try
 		{
@@ -86,7 +86,7 @@ class LiceuServerImp implements LiceuServer
 			
 			HttpPost httpost = new HttpPost(url);
 			httpost.setEntity(new UrlEncodedFormEntity(nvps,"UTF-8"));
-			HttpResponse response = execute_request(httpost);
+			HttpResponse response = executeRequest(httpost);
 			return;
 		}
 		catch (IOException e) {
@@ -96,7 +96,7 @@ class LiceuServerImp implements LiceuServer
 	}
 	
 	// Retorna el httpclient. Si no està establerta la connexió, l'estableix
-	private DefaultHttpClient get_http_client() throws ServerError
+	private DefaultHttpClient getHttpClient() throws ServerError
 	{
 		// Primer comprovem si ja tenim el client en caché
 		// També si ha passat manco de mitja hora des de la darrera vegada.
@@ -135,11 +135,11 @@ class LiceuServerImp implements LiceuServer
 			if (statusLine.getStatusCode() != 200) 
 				throw new ServerError();
 			
-			Cookie ck = get_cookie(myclient, "csrftoken");
+			Cookie ck = getCookie(myclient, "csrftoken");
 			if (ck == null) throw new ServerError();
 			String token = ck.getValue();
 			Log.v(TAG, "csr: " + token);
-			ck = get_cookie(myclient, "sessionid");
+			ck = getCookie(myclient, "sessionid");
 			if (ck == null) throw new ServerError();
 			String sid = ck.getValue();
 			Log.v(TAG, "sessionid: " + sid);
@@ -159,7 +159,7 @@ class LiceuServerImp implements LiceuServer
 			{
 				// Comprovem que la sessionid ha canviat
 				// Si no ha canviat és que no ha anat bé l'autorització
-				Cookie ck2 = get_cookie(myclient, "sessionid");
+				Cookie ck2 = getCookie(myclient, "sessionid");
 				if (ck2 == null) throw new ServerError();
 				if (ck2.getValue().equals(sid)) throw new ServerError();
 				
@@ -177,7 +177,7 @@ class LiceuServerImp implements LiceuServer
 	}
 	
 	// Obté cookie a partir d'un nom del client http especificat
-	private Cookie get_cookie(DefaultHttpClient cl, String name)
+	private Cookie getCookie(DefaultHttpClient cl, String name)
 	{
 		List<Cookie> cookies = cl.getCookieStore().getCookies();
 		for (int i = 0; i < cookies.size(); i++) 
@@ -190,9 +190,9 @@ class LiceuServerImp implements LiceuServer
 	
 	// Fa el get o el post, i torna el HttpResponse si tot va bé.
 	// Si no, amolla excepció ServerError
-	private HttpResponse execute_request(HttpRequestBase request) throws IOException, ServerError
+	private HttpResponse executeRequest(HttpRequestBase request) throws IOException, ServerError
 	{
-		DefaultHttpClient myclient = get_http_client();
+		DefaultHttpClient myclient = getHttpClient();
 		HttpResponse response = myclient.execute(request);
 		int code = response.getStatusLine().getStatusCode();
 		if (code == 200)
@@ -201,7 +201,7 @@ class LiceuServerImp implements LiceuServer
 			throw new ServerError();
 	}
 
-	private String get_string(HttpEntity e) throws ClientProtocolException, IOException
+	private String getString(HttpEntity e) throws ClientProtocolException, IOException
 	{
 		StringBuilder builder = new StringBuilder();
 		InputStream content = e.getContent();

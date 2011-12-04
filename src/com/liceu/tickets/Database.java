@@ -111,7 +111,7 @@ class DatabaseImp extends SQLiteOpenHelper implements Database
 	{
 		try 
 		{
-			String raw = server.read_json("https://apps.esliceu.com/tickets/gettickets");
+			String raw = server.readJson("https://apps.esliceu.com/tickets/gettickets");
 			
 			JSONArray ar = new JSONArray(raw);
 			int l = ar.length();
